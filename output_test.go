@@ -75,15 +75,15 @@ func TestGoTestOutputTree(t *testing.T) {
 		diff := strdiff(nom, Dedent(`
 			=== RUN   TestGoTestOutputTree_helper
 			=== RUN   TestGoTestOutputTree_helper/subtest
+			    output_test.go:NN: wtf
 			=== RUN   TestGoTestOutputTree_helper/subtest/subsubtest
+			    output_test.go:NN: sadz
 			=== RUN   TestGoTestOutputTree_helper/subtest/happy_subsubtest
+			    output_test.go:NN: ooh!
 			--- FAIL: TestGoTestOutputTree_helper (N.NNs)
 			    --- FAIL: TestGoTestOutputTree_helper/subtest (N.NNs)
-			        output_test.go:NN: wtf
 			        --- FAIL: TestGoTestOutputTree_helper/subtest/subsubtest (N.NNs)
-			            output_test.go:NN: sadz
 			        --- PASS: TestGoTestOutputTree_helper/subtest/happy_subsubtest (N.NNs)
-			            output_test.go:NN: ooh!
 			FAIL
 			exit status N
 			FAIL	github.com/warpfork/go-wish	N.NNNs
@@ -149,28 +149,28 @@ func TestGoTestOutputFun(t *testing.T) {
 		diff := strdiff(nom, Dedent(`
 			=== RUN   TestGoTestOutputFun_helper
 			=== RUN   TestGoTestOutputFun_helper/subtest
+			    output_test.go:NNN: hello!
 			=== RUN   TestGoTestOutputFun_helper/subtest/subsubtest
+			    output_test.go:NNN: ShouldEqual check rejected:
+			        	@@ -N +N @@
+			        	- snafoo
+			        	+ zounds
+			        
+			    output_test.go:NNN: ShouldEqual check rejected:
+			        	@@ -N +N @@
+			        	- zebras
+			        	+ cats
+			        
+			    output_test.go:NNN: ShouldEqual check rejected:
+			        	  interface{}(
+			        	- 	struct{ Foo string }{},
+			        	+ 	struct{ Bar string }{},
+			        	  )
+			        
 			=== RUN   TestGoTestOutputFun_helper/subtest/happy_subsubtest
 			--- FAIL: TestGoTestOutputFun_helper (N.NNs)
 			    --- FAIL: TestGoTestOutputFun_helper/subtest (N.NNs)
-			        output_test.go:NNN: hello!
 			        --- FAIL: TestGoTestOutputFun_helper/subtest/subsubtest (N.NNs)
-			            output_test.go:NNN: ShouldEqual check rejected:
-			                	@@ -N +N @@
-			                	- snafoo
-			                	+ zounds
-			                
-			            output_test.go:NNN: ShouldEqual check rejected:
-			                	@@ -N +N @@
-			                	- zebras
-			                	+ cats
-			                
-			            output_test.go:NNN: ShouldEqual check rejected:
-			                	  interface{}(
-			                	- 	struct{ Foo string }{},
-			                	+ 	struct{ Bar string }{},
-			                	  )
-			                
 			        --- PASS: TestGoTestOutputFun_helper/subtest/happy_subsubtest (N.NNs)
 			FAIL
 			exit status N
